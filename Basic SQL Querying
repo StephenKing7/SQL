@@ -1,0 +1,31 @@
+only use single quotes for strings... not double quotes
+only use '=' for equality... not '=='
+
+SELECT [column1, column2]
+FROM [table]
+WHERE [condition1] AND [condition2] OR [condition3]
+ORDER BY [columnX] DESC (ASC is default);
+
+SELECT DISTINCT [column]  #  Distinct only returns unique values
+FROM [table];
+
+SELECT [column]
+FROM [table]
+LIMIT 5 OFFSET 5;  #  Return 5 rows starting from row 5
+
+/*  */  #  multiline comments
+IS NULL  #  the complete absence of a value
+IS NOT NULL  #  must have value or default value
+
+SELECT [column1]
+FROM [table]
+WHERE [column1] IN ('string1', 'string2')  #  IN is used in WHERE clause to specify list of values matched via 'OR' comparison
+ORDERY BY [column1];
+
+The percent sign (%) is a wildcard used with LIKE.  Within a search string, % means, match any number of occurrences of any character (including 0 occurrences)
+
+SELECT [column1], [column2]
+FROM [table]
+WHERE [column2] LIKE 'name%';
+
+In contrast to %, '_' matches exactly 1 character as a wildcard

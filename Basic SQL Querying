@@ -29,3 +29,31 @@ FROM [table]
 WHERE [column2] LIKE 'name%';
 
 In contrast to %, '_' matches exactly 1 character as a wildcard
+
+SELECT Concat([column1], ' (', [column2], ')')  #  concatenating columns
+FROM [table]
+ORDER BY [column1];
+
+create aliases using 'AS'
+
+SELECT [column1] AS [column1.1]
+
+LEFT()  Returns characters from left of string
+LENGTH()  Returns the length of a string
+LOWER()  Converts string to lowercase
+LTRIM()  Trims white space from left of string
+RIGHT()  Returns characters from right of string
+RTRIM()  Trims white space from right of string
+SOUNDEX()  Returns a string's SOUNDEX value
+UPPER()  Converts string to uppercase
+
+ABS()  Returns a number's absolute value
+COS()  Returns the trigonometric cosine of a specified angle
+EXP()  Returns the exponential value of a specific number
+PI()  Returns the value of Pi
+SIN()  Returns the trigonometric sine of a specific angle
+SQRT()  Returns the square root of a specified number
+TAN()  Returns the trigonometric tangent of a specified angle
+
+
+

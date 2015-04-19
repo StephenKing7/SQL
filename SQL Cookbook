@@ -111,8 +111,7 @@ CREATE TABLE EMP_COMMISSION1
 	COMM INTEGER);
 
 Deleting all Records from Table:
-DELETE 
-FROM emp_commission
+DELETE FROM emp_commission
 WHERE deptno = 10;
 
 Deleting Referential Integrity Violations:  ‘NOT EXISTS’

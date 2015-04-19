@@ -55,5 +55,29 @@ SIN()  Returns the trigonometric sine of a specific angle
 SQRT()  Returns the square root of a specified number
 TAN()  Returns the trigonometric tangent of a specified angle
 
+AGGREGATE FUNCTIONS:
+AVG()  Returns a column's average value  #  NULL values are ignored
+COUNT()  Returns the number of rows in a column  #  NULL values are ignored if column name is specified
+MAX()  Returns a column's highest value  #  NULL values are ignored
+MIN()  Returns a column's lowest value  #  NULL values are ignored
+SUM()  Returns the sum of a column's values  #  NULL values are ignored
 
+SELECT [column]
+FROM [table]
+GROUP BY [column]
+HAVING [condition];
 
+The difference between HAVING and WHERE:
+WHERE filters the data before it is grouped; HAVING filters the data after it is grouped
+
+SUBQUERIES
+Subquery SELECT statements can only retrieve a single column.
+
+UNION / UNION ALL
+SELECT [column]
+FROM [table]
+WHERE [condition]
+UNION (ALL)  #  UNION is rbind, removing duplicates; UNION ALL is rbind, including duplicates
+SELECT [column]
+FROM [table]
+WHERE[condition];

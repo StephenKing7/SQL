@@ -165,3 +165,95 @@ De-Normalization:
 •	Normalization is concerned about the quality and reducing redundancy.  De-Normalization is for performance improvement. 
 
 •	You really want to understand the data before making the decision about normalizing and de-normalizing
+
+
+Date Manipulation Language (DML)
+SELECT
+INSERT 
+UPDATE
+DELETE
+
+Data Definition Language
+CREATE
+ALTER 
+DROP
+
+Data Control Keywords
+Grant
+Revoke
+
+Creating Indexes:
+Help you find things in your database; All about speed of access
+
+Clustered Index:  Pick a column and then the rest of the data will be sorted that way.  Most common clustered index in databases is the primary key column.  Most tables will have PK as the clustered index.  Each table can only have one Clustered Index.  
+
+Full Table Scans are inefficient.  
+
+Non-clustered index on LastName… it’s a separate map of the data that’s ordered by something other than the clustered index.
+
+Why don’t we add a non-clustered index to every column.  Every index has a cost.  Indexes need to be maintained.  Indexes are a benefit when reading data, but they are costly to maintain. 
+
+Only put indexes on the columns that you really need and use all of the time.  
+
+•	Indexing is not just “up-front” work
+•	Indexing is a trade-off
+o	Faster reads, slower writes
+•	But it can be tweaked without breaking applications
+
+BEGIN/START TRANSACTION/WORK
+COMMIT
+
+“dirty read” there is a transaction going on that is in the middle and we’re allowed to read from it. 
+
+Pessimistic Locking = we are pessimistic that transactions are in conflict of each other.  Once the first transaction begins, the second transaction must wait until it’s over.
+
+If you always do pessimistic locking, you may end up with a lot of read errors.  There are a lot of situations when transactions are not competing
+
+Optimistic Locking = Bob will be allowed to read from the table during transaction, but not update because it’ll be a dirty read.
+
+Figure out what the default locking is
+
+Stored Procedures:  sometimes called an S-Proc; It’s a chunk of SQL that can be written, given a name, and stored directly.. kind of like a method or function
+
+Stored Procedures
+
+CREATE PROCEDURE HighlyPaid()
+SELECT * FROM Employee
+WHERE Salary > 50000
+ORDER BY LastName, FirstName
+END;
+
+CALL HighlyPaid();
+
+Stored procedures can have parameters
+CREATE PROCEDURE EmployeesInDept (IN dept VARCHAR(50))
+SELECT * FROM Employee
+WHERE Department = dept
+ORDER BY LastName, FirstName
+END;
+
+Call EmployeesInDept(‘Accounting’);
+
+Relational Database Management Systems (RDBMS):
+Tables w/ Defined columns
+PK and FK
+Relations, Transactions, ACID Test
+Use SQL to talk with them
+
+Object Relational Mapping (ORM) allows us to connect an object oriented language to a normal relational database system
+
+NoSQL Database Systems:
+“Not only SQL”
+
+Document Stores
+•	Documents, not rows and columns
+Key-value Stores
+•	Everything stored as a key-value pair
+Graph database
+•	Everything stored as small connected nodes, with relations
+
+Reasons to choose a NoSQL database
+•	Do you need a flexible schema?
+•	Do you have vast amounts of data?
+•	Do you value scaling over consistency?
+

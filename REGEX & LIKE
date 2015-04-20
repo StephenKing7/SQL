@@ -1,0 +1,58 @@
+Regular Expressions & Pattern Matching
+
+SQL:
+
+The LIKE Operator:
+“With LIKE, you can test for simple patterns using wildcards.  It returns 1 if the expression matches the pattern; otherwise it returns 0.  If either the expression or pattern is NULL, the result is also NULL.  You can assign your own escape character instead of the backslash character (/).
+
+•	_ matches one character
+•	% matches any number of characters, including zero characters
+
+SELECT [columns] FROM [table] WHERE [colName] LIKE ‘King%Stephen%’;
+
+Snapshot of results =
+•	King,Stephen
+•	King.Stephen@gmail.com
+
+Introducing the REGEXP Operator:
+“To match any one character, use the period (.).  You could say that it replaces the underscore character (_).  However, when positioned before an asterisk (*), it then matches any number of characters, including none; that is to say, zero to N characters.
+
+SELECT [expression] REGEXP [pattern]
+SELECT [expression] NOT REGEXP [pattern]
+
+a* = match any sequence of zero or more ‘a’ characters
+SELECT Columns FROM Table WHERE ColName REGEXP ‘^Ba*n’;
+
+a+ = match any sequence of one or more ‘a’ characters
+SELECT ‘Ban’ REGEXP ‘^Ba+n’;  True
+SELECT ‘Baan’ REGEXP ‘^Ba+n’;  False
+
+a? = match either zero or one ‘a’ character
+SELECT  ‘Bn’ REGEXP ‘^Ba?n’;  True
+SELECT ‘Baan’ REGEXP ‘^Ba?n’;  False
+
+de|abc = match either of the sequences ‘de’ or ‘abc’
+SELECT ‘pi’ REGEXP ‘pi|apa’;  True
+SELECT ‘pix’ REGEXP ‘pi|apa’;  False
+SELECT ‘apa’ REGEXP ‘pi|apa’;  True
+
+‘^’ = begins with
+SELECT Columns FROM Table WHERE ColName REGEXP ‘^b’;
+
+‘$’ = ends with
+SELECT Columns FROM Table WHERE ColName REGEXP ‘fy$’;
+
+‘a-z’ = containing
+SELECT Columns FROM Table WHERE ColName REGEXP ‘a-z’;
+
+‘^.{n}$’ = n-characters long
+SELECT Columns FROM Table WHERE ColName REGEXP ‘^.{n}$’
+
+•	a* = a{0,} = zero or more ‘a’ characters
+•	a+ = a{1,} = one or more ‘a’ characters
+•	a? = a{0,1} = either zero or one ‘a’ characters
+
+“a{n} matches exactly n instances of a.  a{n,} matches n or more instances of a.  a{m,n} matches m through n instances of a, inclusive”
+
+
+

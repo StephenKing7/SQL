@@ -1,0 +1,134 @@
+XAMPP package for cross-platform environment
+XAMPP runs the Apache Web Server
+
+SELECT * FROM table;
+
+INSERT INTO table (a,b,c)
+	VALUES (1,2,3)
+
+** The word ‘AS’ is actually optional
+
+/* this is a
+ multi-line comment */
+
+-- this is a single line comment
+
+SELECT * FROM Album WHERE Label = ‘Columbia’;
+
+SELECT COUNT(*) FROM Album WHERE Label = ‘Columbia’;
+
+**INSERT INTO table (column1, column2) VALUES (value1, value2);
+
+**UPDATE [table] SET [column] = [value] WHERE PK = x;
+
+**DELETE FROM [table] WHERE PK = x;
+
+**CREATE TABLE test 
+(a INTEGER NOT NULL, 
+b TEXT NULL);
+
+**CREATE TABLE test 
+( a TEXT UNIQUE, 
+b TEXT NOT NULL, 
+c TEXT DEFAULT 'panda');
+
+**DROP TABLE test;
+
+**DROP TABLE IF EXISTS test;
+
+SELECT * FROM test WHERE a IS NULL;
+
+SELECT * FROM test WHERE a IS NOT NULL;
+
+
+ALTER TABLE test ADD e TEXT DEFAULT 'panda';
+
+SELECT Name, Continent, Population FROM Country WHERE Name LIKE '_a%' ORDER BY Name;
+
+SELECT Name, Continent, Population FROM Country WHERE Continent IN ('Europe', 'Asia' ) ORDER BY Name;
+
+SELECT DISTINCT Continent FROM Country;
+
+SELECT
+  CASE WHEN a THEN 'true' ELSE 'false' END as boolA,
+  CASE WHEN b THEN 'true' ELSE 'false' END as boolB
+  FROM booltest
+;
+
+SELECT c.name AS Cust, i.name AS Item, s.price AS Price
+  FROM customer AS c
+  JOIN sale AS s on s.customer_id = c.id
+  JOIN item AS i on s.item_id = i.id
+  ORDER BY Cust, Item;
+
+*** Many to many relationships may require two ‘joins’
+
+SELECT LENGTH('string');
+
+SELECT Name, Length(Name) AS Len FROM City ORDER BY Len DESC, Name;
+
+Substring allows you to select part of the string based on the position of the characters.  Unpack data from a text column.
+
+SELECT released, 
+    SUBSTR(released, 1, 4) AS year,
+    SUBSTR(released, 6, 2) AS month,
+    SUBSTR(released, 9, 2) AS day 
+  FROM album
+ORDER BY released;
+
+SELECT TRIM('...string...', '.');
+
+SELECT LOWER('StRiNg') = LOWER('string');
+
+SELECT UPPER('StRiNg') = UPPER('string');
+
+SELECT TYPEOF( 1 + 1);  #  TYPEOF is specific to SQLite
+SELECT TYPEOF( 1 + 1.0);
+
+SELECT CAST(1 AS REAL) / 2;
+
+SELECT 17 / 5, 17 % 5;
+
+SELECT ROUND(2.55555, 3);  #  the second parameter determines how many decimal places for rounding
+
+SELECT DATETIME('now');  #  provides current UTC time
+SELECT DATE('now');
+SELECT TIME('now');
+
+SELECT DATETIME('now', '+3 days');
+
+SELECT DATETIME('now', '+3 hours', '+27 minutes', '-1 day', '+3 years');
+
+SELECT Region, COUNT(*) 
+  FROM Country
+  GROUP BY Region;
+
+SELECT a.title AS Album, COUNT(t.track_number) as Tracks
+  FROM track AS t
+  JOIN album AS a
+    ON a.id = t.album_id
+  WHERE a.artist = 'The Beatles'
+  GROUP BY a.id
+  HAVING Tracks >= 10
+  ORDER BY Tracks DESC, Album;
+
+SELECT COUNT(DISTINCT HeadOfState) FROM Country;
+
+BEGIN TRANSACTION;
+INSERT INTO widgetSales ( inv_id, quan, price ) VALUES ( 1, 5, 500 );
+UPDATE widgetInventory SET onhand = ( onhand - 5 ) WHERE id = 1;
+END TRANSACTION;
+
+**  BEGIN TRANSACTION tells RDMS to treat entire block as one unit
+
+SELECT * FROM widgetSale;
+CREATE TRIGGER updateWidgetSale BEFORE UPDATE ON widgetSale
+    BEGIN
+        SELECT RAISE(ROLLBACK, 'cannot update table "widgetSale"') FROM widgetSale
+            WHERE id = NEW.id AND reconciled = 1;
+    END;
+CREATE VIEW trackView AS
+  SELECT id, album_id, title, track_number, duration / 60 AS m, duration % 60 AS s FROM track;
+SELECT * FROM trackView;
+
+DROP VIEW IF EXISTS trackView;
